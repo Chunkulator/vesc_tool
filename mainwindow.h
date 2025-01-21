@@ -50,6 +50,7 @@
 #include "pages/pageappsettings.h"
 #include "pages/pageappgeneral.h"
 #include "pages/pageappppm.h"
+#include "pages/pageappserialrx.h"
 #include "pages/pageappadc.h"
 #include "pages/pageappuart.h"
 #include "pages/pageappnunchuk.h"
@@ -208,6 +209,7 @@ private:
     PageAppSettings *mPageAppSettings;
     PageAppGeneral *mPageAppGeneral;
     PageAppPpm *mPageAppPpm;
+    PageAppSerialRx *mPageAppSerialRx;
     PageAppAdc *mPageAppAdc;
     PageAppUart *mPageAppUart;
     PageAppNunchuk *mPageAppNunchuk;

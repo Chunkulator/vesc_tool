@@ -330,6 +330,8 @@ MainWindow::MainWindow(QWidget *parent) :
                     (!(type == 0 || type == 3 || type == 6 || type == 7 || type == 8));
             ui->pageList->item(mPageNameIdList.value("app_pas"))->setHidden
                     (!(type == 9 || type == 10));
+            ui->pageList->item(mPageNameIdList.value("app_serialrx"))->setHidden
+                    (!(type == 11));
         }
     };
 
@@ -357,6 +359,7 @@ MainWindow::MainWindow(QWidget *parent) :
             ui->pageList->item(mPageNameIdList.value("app"))->setHidden(false);
             ui->pageList->item(mPageNameIdList.value("app_general"))->setHidden(false);
             ui->pageList->item(mPageNameIdList.value("app_ppm"))->setHidden(false);
+            ui->pageList->item(mPageNameIdList.value("app_serialrx"))->setHidden(false);
             ui->pageList->item(mPageNameIdList.value("app_adc"))->setHidden(false);
             ui->pageList->item(mPageNameIdList.value("app_uart"))->setHidden(false);
             ui->pageList->item(mPageNameIdList.value("app_vescremote"))->setHidden(false);
@@ -384,6 +387,7 @@ MainWindow::MainWindow(QWidget *parent) :
             ui->pageList->item(mPageNameIdList.value("app"))->setHidden(true);
             ui->pageList->item(mPageNameIdList.value("app_general"))->setHidden(true);
             ui->pageList->item(mPageNameIdList.value("app_ppm"))->setHidden(true);
+            ui->pageList->item(mPageNameIdList.value("app_serialrx"))->setHidden(true);
             ui->pageList->item(mPageNameIdList.value("app_adc"))->setHidden(true);
             ui->pageList->item(mPageNameIdList.value("app_uart"))->setHidden(true);
             ui->pageList->item(mPageNameIdList.value("app_vescremote"))->setHidden(true);
@@ -412,6 +416,7 @@ MainWindow::MainWindow(QWidget *parent) :
         mPageAppSettings->reloadParams();
         mPageAppGeneral->reloadParams();
         mPageAppPpm->reloadParams();
+        mPageAppSerialRx->reloadParams();
         mPageAppAdc->reloadParams();
         mPageAppUart->reloadParams();
         mPageAppNunchuk->reloadParams();
@@ -1500,6 +1505,13 @@ void MainWindow::reloadPages()
                 theme + "icons/appconf.png", false, true);
     mPageNameIdList.insert("app_ppm", ui->pageList->count() - 1);
 
+    mPageAppSerialRx = new PageAppSerialRx(this);
+    mPageAppSerialRx->setVesc(mVesc);
+    ui->pageWidget->addWidget(mPageAppSerialRx);
+    addPageItem(tr("SerialRx"),  theme + "icons/Controller-96.png",
+                theme + "icons/appconf.png", false, true);
+    mPageNameIdList.insert("app_serialrx", ui->pageList->count() - 1);
+
     mPageAppAdc = new PageAppAdc(this);
     mPageAppAdc->setVesc(mVesc);
     ui->pageWidget->addWidget(mPageAppAdc);
@@ -1668,6 +1680,7 @@ void MainWindow::reloadPages()
      * app
      * app_general
      * app_ppm
+     * app_serialrx
      * app_adc
      * app_uart
      * app_vescremote
